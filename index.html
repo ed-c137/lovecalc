@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Love Bug</h1>
+    </header>
+    <div id="app">
+      <section  class="container">
+       <form class="calc-form"  @submit.prevent="onSubmit">
+        <div class="form-group">
+          <label for="person_1"></label>
+          <input name="person_1" type="text" v-model="user1">
+        </div>
+        <div class="love">Loves</div><button @click.prevent="invert">invert</button>
+        <div class="form-group">
+          <label for="person_2"></label>
+          <input name="person_2" type="text" v-model="user2">
+        </div>
+        <button>♥️</button>
+       </form>
+       <div class="output" v-if="opt">
+            {{ opt }}
+       </div>
+      </section>
+    </div>
+  </body>
+</html>
