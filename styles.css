@@ -8,69 +8,47 @@ html {
 
 body {
   margin: 0;
+  overflow: hidden;
+  position: relative;
 }
 
-header {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 0.5rem;
-  background-color: #880017;
-  color: white;
-  text-align: center;
-  margin-bottom: 2rem;
-}
+
 
 section {
   width: 90%;
-  max-width: 40rem;
+  max-width: 30rem;
   margin: auto;
 }
 
-.healthbar {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #575757;
-  margin: 1rem 0;
-  background: #fde5e5;
-}
-
-.healthbar__value {
-  background-color: #00a876;
-  width: 100%;
-  height: 100%;
-}
 
 .container {
   text-align: center;
   padding: 0.5rem;
-  margin: 1rem auto;
+  
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
 }
 
-#monster h2,
-#player h2 {
-  margin: 0.25rem;
+#app{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
 }
 
-#controls {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
+
 
 button {
   font: inherit;
-  border: 1px solid #88005b;
-  background-color: #88005b;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  margin: 1rem;
-  width: 12rem;
-  cursor: pointer;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+  border: 1px solid #24d7b5;
+  background-color: #61e2b2;
+color: white;
+padding: .4rem 2rem;
+border-radius: 12px;
+margin: 1rem;
+width: 9rem;
+cursor: pointer;
+box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
 
 button:focus {
@@ -79,8 +57,8 @@ button:focus {
 
 button:hover,
 button:active {
-  background-color: #af0a78;
-  border-color: #af0a78;
+  background-color: #5cc19c;
+  border-color: #61e2b2;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -92,35 +70,19 @@ button:disabled {
   cursor: not-allowed;
 }
 
-#log ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
-#log li {
-  margin: 0.5rem 0;
-}
 
-.log--player {
-  color: #7700ff;
-}
-
-.log--monster {
-  color: #da8d00;
-}
-
-.log--damage {
-  color: red;
-}
-
-.log--heal {
-  color: green;
+section.heart{
+  z-index: 2;
+  position: relative;
+  background: white;
 }
 
 .calc-form input{
     padding:.4rem .5rem;
     font-size: 17px;
+    z-index: 2;
+    border: 1px dashed;
 }
 
 .output{
@@ -130,3 +92,43 @@ button:disabled {
   color: white;
   padding: .3rem .9rem;
 }
+
+.invert-btn{
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  background: white;
+  border: none;
+  margin: 0;
+  /* margin-left: 3rem; */
+  position: absolute;
+  right: 3rem;
+}
+.invert-btn:hover,
+.invert-btn:focus{
+  background: whitesmoke;
+  box-shadow: none;
+  /* border: 1px solid #333; */
+}
+.invert-btn svg{
+  height: 80%;
+}
+.mid{
+  position: relative;
+  margin: auto;
+  padding: 1rem;
+}
+
+.loves{
+  /* margin-right: 3rem; */
+  display: inline-block;
+  /* padding: 1rem 0; */
+}
+
+svg#hearts {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+

@@ -3,7 +3,7 @@ app = Vue.createApp({
         return{
             testarr : [1, 3, 4, 2, 3, 2, 2],
             startarr: "",
-            invert: false,
+            ivt: false,
             user1: null,
             user2: null,
             numarr: [],//array used to store the starting number equivalent for calculation
@@ -13,25 +13,26 @@ app = Vue.createApp({
     methods:{
         onSubmit(){
             this.startarr = this.cleanstr.split("");
-            
-            // console.log(this.startarr);
+            this.numarr = [];
+            console.log("submit");
             //calcarr = numarr
             //fullstr = startarr
-            // this.numarr = [];
             while(this.startarr.length > 0){
             
                 this.first = this.startarr[0];
                 this.startarr = this.startarr.slice(1);
                 this.checkCharO();
             }
-            console.log(this.numarr);//works like its supposed to till here
+            // console.log(this.numarr);
             this.calcNums();
         },
         invert(){
-            this.invert = !this.invert
-            this.user1 = this.user2;
-            this.user2 = this.user1;
-            // this.onSubmit();
+            let user1 = this.user1;
+            let user2 = this.user2;
+
+            this.user1 = user2;
+            this.user2 = user1;
+            this.onSubmit();
         },
         checkCharO(){
             let o = 1;
@@ -40,12 +41,13 @@ app = Vue.createApp({
                 this.startarr.splice(i, 1);
                 o++;
             }
-            // console.log(o);
+             console.log("checkchar0");
             this.numarr.push(o);
             // console.log(this.calcarr);
 
         },
         calcNums(){
+            console.log("calcnums");
             let temparr = [];
 
             while(this.numarr.length >= 2){
@@ -53,8 +55,8 @@ app = Vue.createApp({
                 this.numarr.splice(this.numarr.length - 1, 1);//pops off the last number
                 this.numarr.splice(0, 1);//pops off the first number
                 temparr.push(vsum);
-                console.log(this.numarr);
             }
+           
             if(this.numarr.length === 1){
                 temparr.push(...this.numarr);
             }
@@ -66,11 +68,10 @@ app = Vue.createApp({
             }else if(this.numarr.length == 2){
                 console.log("=2");
                 this.calcTwoNum();
-            }else{
-                console.log("else");
             }
         },
         calcTwoNum(){
+            console.log("calctwonums");
             let arr2 = [];
             let arr = this.numarr;
             if(arr[0].toString().length >= 2 || arr[1].toString().length >= 2){
@@ -81,7 +82,7 @@ app = Vue.createApp({
                 let o = this.numarr.join('');
                 this.opt = `${o}%`
             }
-            // console.log(arr);
+           
         }
     },
     computed:{
@@ -92,3 +93,40 @@ app = Vue.createApp({
 });
 
 app.mount('#app');
+
+const colors = ["#e03776","#8f3e98","#4687bf","#3bab6f","#f9c25e","#f47274"];
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const SVG_XLINK = "http://www.w3.org/1999/xlink";
+
+let heartsRy = []
+
+function useTheHeart(n){
+  let use = document.createElementNS(SVG_NS, 'use');
+  use.n = n;
+  use.setAttributeNS(SVG_XLINK, 'xlink:href', '#heart');
+  use.setAttributeNS(null, 'transform', `scale(${use.n})`);
+  use.setAttributeNS(null, 'fill', colors[n%colors.length]);
+  use.setAttributeNS(null, 'x', -69);
+  use.setAttributeNS(null, 'y', -69);
+  use.setAttributeNS(null, 'width', 138);
+  use.setAttributeNS(null, 'height', 138);
+  
+  heartsRy.push(use)
+  hearts.appendChild(use);
+}
+
+for(let n = 18; n >= 0; n--){useTheHeart(n)}
+
+function Frame(){
+  window.requestAnimationFrame(Frame);
+  for(let i = 0; i < heartsRy.length; i++){
+    if(heartsRy[i].n < 18){heartsRy[i].n +=.01
+     }else{
+     heartsRy[i].n = 0;
+     hearts.appendChild(heartsRy[i])
+    }
+    heartsRy[i].setAttributeNS(null, 'transform', `scale(${heartsRy[i].n})`);
+  }
+}
+
+Frame()
